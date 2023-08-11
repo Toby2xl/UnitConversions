@@ -17,10 +17,19 @@ public class ConversionService : IConversionService
     
     public async Task<decimal> GetConversion(string dimension, string sourceUnit, string destinationUnit, decimal sourceValue, CancellationToken cancellationToken)
     {
-        var value = await _conversionRepo.GetConversionFactor(dimension: dimension, sourceUnit, destinationUnit, cancellationToken);
-        decimal sourceFactor = value.SourceFactor;
-        decimal destFactor = value.DestFactor;
-
+        decimal sourceFactor;
+        decimal destFactor;
+        var value = await _conversionRepo.GetConversionFactor(dimension, sourceUnit, destinationUnit, cancellationToken);
+        if(value is null)
+        {
+           sourceFactor = 0.0M;
+           destFactor = 0.0M;        }
+        else
+        {
+            sourceFactor = value.SourceFactor;
+            destFactor = value.DestFactor;
+        }
+        
         var units = UnitConvert.Define(sourceValue, sourceFactor, destFactor);
         decimal result = units.Convert();
         return result;

@@ -30,12 +30,11 @@ public class GetConversionQueryHandler : IRequestHandler<GetConversionQuery, Con
             response.Data = conversionResult;
             _logger.LogInformation("The result for the conversion is {resultValue}", result);
         }
-        catch (System.Exception)
+        catch (System.Exception ex)
         {
             response.Success = false;
             response.Data = null;
-            _logger.LogError("An error occured while getting the Conversion for {destUnit} with value: {value}", destUnit, sourceVal);
-            //throw;
+            _logger.LogError("An error occured while getting the Conversion for {destUnit} with value: {value}; Message => {message}", destUnit, sourceVal, ex.Message);
         }
         return response;
     }
