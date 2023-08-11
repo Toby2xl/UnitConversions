@@ -1,4 +1,4 @@
-namespace Units.Tests;
+namespace IntegrationTests;
 
 public class UnitTest1
 {
