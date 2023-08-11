@@ -7,6 +7,6 @@ namespace Units.Application.Repository
 {
     public interface IConversionRepo
     {
-        Task<ConversionDto> GetConversionFactor(string dimension, string unit, CancellationToken cancellationToken);
+        Task<ConversionDto> GetConversionFactor(string dimension, string sourceUnit, string destUnit, CancellationToken cancellationToken);
     }
 }
