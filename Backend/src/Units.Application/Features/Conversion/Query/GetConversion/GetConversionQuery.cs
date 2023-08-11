@@ -3,7 +3,7 @@ using MediatR;
 
 
 
-namespace Units.Application.Features.Coonversion.Query.GetConversion;
+namespace Units.Application.Features.Conversion.Query.GetConversion;
 
 public class GetConversionQuery : IRequest<ConversionResponse>
 {
@@ -13,4 +13,3 @@ public class GetConversionQuery : IRequest<ConversionResponse>
     public decimal SourceValue { get; set; }
 }
 
-//public record ConversionResult(string DestinationUnit, decimal DestinationValue);

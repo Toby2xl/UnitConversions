@@ -17,8 +17,9 @@ public class ConversionService : IConversionService
     
     public async Task<decimal> GetConversion(string dimension, string sourceUnit, string destinationUnit, decimal sourceValue, CancellationToken cancellationToken)
     {
-        decimal sourceFactor = await _conversionRepo.GetConversionFactor(dimension: dimension, unit: sourceUnit, cancellationToken);
-        decimal destFactor = await _conversionRepo.GetConversionFactor(dimension, destinationUnit, cancellationToken);
+        var value = await _conversionRepo.GetConversionFactor(dimension: dimension, unit: sourceUnit, cancellationToken);
+        decimal sourceFactor = value.SourceFactor;
+        decimal destFactor = value.DestFactor;
 
         var units = UnitConvert.Define(sourceValue, sourceFactor, destFactor);
         decimal result = units.Convert();

@@ -1,6 +1,6 @@
 using System;
 
-namespace Units.Application.Features.Coonversion.Query.GetConversion
+namespace Units.Application.Features.Conversion.Query.GetConversion
 {
     public class ConversionResponse : BaseResponse<ConversionResult>
     {

@@ -1,16 +1,18 @@
 using System;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Units.Application.Service;
 
-namespace Units.Application.Features.Coonversion.Query.GetConversion;
+namespace Units.Application.Features.Conversion.Query.GetConversion;
 
 public class GetConversionQueryHandler : IRequestHandler<GetConversionQuery, ConversionResponse>
 {
     private readonly IConversionService _conv;
-    public GetConversionQueryHandler(IConversionService conv)
+    private readonly ILogger<GetConversionQueryHandler> _logger;
+    public GetConversionQueryHandler(IConversionService conv, ILogger<GetConversionQueryHandler> logger)
     {
         _conv = conv;
-
+        _logger = logger;
     }
     public async Task<ConversionResponse> Handle(GetConversionQuery request, CancellationToken cancellationToken)
     {
@@ -26,12 +28,14 @@ public class GetConversionQueryHandler : IRequestHandler<GetConversionQuery, Con
             var result = await _conv.GetConversion(dimension, sourceUnit, destUnit, sourceVal, cancellationToken);
             var conversionResult = new ConversionResult(destUnit, result);
             response.Data = conversionResult;
+            _logger.LogInformation("The result for the conversion is {resultValue}", result);
         }
         catch (System.Exception)
         {
             response.Success = false;
             response.Data = null;
-            throw;
+            _logger.LogError("An error occured while getting the Conversion for {destUnit} with value: {value}", destUnit, sourceVal);
+            //throw;
         }
         return response;
     }
