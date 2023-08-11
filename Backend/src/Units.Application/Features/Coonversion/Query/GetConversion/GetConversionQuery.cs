@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Units.Application.Features.Coonversion.Query.GetConversion;
 
-public class GetConversionQuery : IRequest<ConversionResult>
+public class GetConversionQuery : IRequest<ConversionResponse>
 {
     public string Dimension { get; set; } = string.Empty;
     public string SourceUnit { get; set; } = string.Empty;
@@ -13,4 +13,4 @@ public class GetConversionQuery : IRequest<ConversionResult>
     public decimal SourceValue { get; set; }
 }
 
-public record ConversionResult(string DestinationUnit, decimal DestinationValue);
+//public record ConversionResult(string DestinationUnit, decimal DestinationValue);

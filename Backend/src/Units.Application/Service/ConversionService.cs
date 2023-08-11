@@ -1,5 +1,7 @@
 using System;
+using Units.Application.Helper;
 using Units.Application.Repository;
+
 
 
 namespace Units.Application.Service;
@@ -13,12 +15,14 @@ public class ConversionService : IConversionService
 
     }
     
-    public async Task<decimal> GetConversion(string sourceUnit, string destinationUnit, decimal sourceValue, string dimension, CancellationToken cancellationToken)
+    public async Task<decimal> GetConversion(string dimension, string sourceUnit, string destinationUnit, decimal sourceValue, CancellationToken cancellationToken)
     {
         decimal sourceFactor = await _conversionRepo.GetConversionFactor(dimension: dimension, unit: sourceUnit, cancellationToken);
         decimal destFactor = await _conversionRepo.GetConversionFactor(dimension, destinationUnit, cancellationToken);
 
-        return decimal.Zero;
+        var units = UnitConvert.Define(sourceValue, sourceFactor, destFactor);
+        decimal result = units.Convert();
+        return result;
     }
 
 }
