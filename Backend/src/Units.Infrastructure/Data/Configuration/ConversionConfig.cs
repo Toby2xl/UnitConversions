@@ -16,7 +16,7 @@ namespace Units.Infrastructure.Data.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Dimension).HasMaxLength(15).IsRequired();
             builder.Property(x => x.Units).HasMaxLength(15).IsRequired();
-            builder.Property(x => x.Factor).HasPrecision(15, 8).IsRequired(); //check this before you forget...
+            builder.Property(x => x.Factor).HasPrecision(15, 8).IsRequired();
 
         }
 

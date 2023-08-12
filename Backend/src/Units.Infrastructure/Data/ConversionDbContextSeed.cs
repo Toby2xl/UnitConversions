@@ -7,7 +7,7 @@ namespace Units.Infrastructure.Data;
 
 public static class ConversionDbContextSeed
 {
-    public static async Task SeedConversionDataAsync(ConversionDbContext context)
+    public static void SeedConversionDataAsync(ConversionDbContext context)
     {
         if(!context.Conversions.Any())
         {
@@ -46,7 +46,7 @@ public static class ConversionDbContextSeed
 
             );
 
-            await context.SaveChangesAsync();
+             context.SaveChanges();
         }
     }
 }
