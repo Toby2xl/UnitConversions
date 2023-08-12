@@ -13,7 +13,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var connString = config.GetConnectionString("UnitsConversionDb");
+        var connString = config.GetConnectionString("ConversionConn");
         services.AddDbContext<ConversionDbContext>(
             options => options.UseNpgsql(connString)
         );
