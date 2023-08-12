@@ -23,7 +23,8 @@ public class ConversionService : IConversionService
         if(value is null)
         {
            sourceFactor = 0.0M;
-           destFactor = 0.0M;        }
+           destFactor = 0.0M; 
+        }
         else
         {
             sourceFactor = value.SourceFactor;
@@ -31,6 +32,12 @@ public class ConversionService : IConversionService
         }
         
         var units = UnitConvert.Define(sourceValue, sourceFactor, destFactor);
+
+        if(dimension == "temperature")
+        {
+            return units.ConvertTemperature(sourceUnit, destinationUnit, sourceValue);
+        }
+
         decimal result = units.Convert();
         return result;
     }

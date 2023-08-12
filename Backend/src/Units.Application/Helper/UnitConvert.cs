@@ -32,4 +32,9 @@ public class UnitConvert
         decimal result = SourceValue * SourceFactor / DestFactor;
         return result;
     }
+
+    public decimal ConvertTemperature(string sourceUnit, string destUnit, decimal sourceValue)
+    {
+        return Temperature.GetTemperature(sourceUnit, destUnit, sourceValue);
+    }
 }
