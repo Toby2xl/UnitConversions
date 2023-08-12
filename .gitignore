@@ -16,6 +16,8 @@
 # Mono auto generated files
 mono_crash.*
 
+
+frontend/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -276,7 +278,7 @@ ServiceFabricBackup/
 *.rptproj.rsuser
 *- [Bb]ackup.rdl
 *- [Bb]ackup ([0-9]).rdl
-*- [Bb]ackup ([0-9][0-9]).rdl
+
 
 # Microsoft Fakes
 FakesAssemblies/
