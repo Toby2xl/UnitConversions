@@ -17,9 +17,9 @@ namespace Units.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Units = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Dimension = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Factor = table.Column<decimal>(type: "numeric(15,8)", precision: 15, scale: 8, nullable: false)
+                    Units = table.Column<string>(type: "text", nullable: false),
+                    Dimension = table.Column<string>(type: "text", nullable: false),
+                    Factor = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {

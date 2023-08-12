@@ -11,11 +11,11 @@ namespace Units.Api.Extension
         {
             using var scope = app.Services.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<ConversionDbContext>();
-
+            
+            dbContext.Database.Migrate();
             //seed conversion rates
             ConversionDbContextSeed.SeedConversionDataAsync(dbContext);
 
-            dbContext.Database.Migrate();
         }
         
     }

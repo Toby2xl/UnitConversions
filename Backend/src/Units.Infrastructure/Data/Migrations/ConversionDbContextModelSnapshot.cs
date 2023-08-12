@@ -31,17 +31,14 @@ namespace Units.Infrastructure.Data.Migrations
 
                     b.Property<string>("Dimension")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Factor")
-                        .HasPrecision(15, 8)
-                        .HasColumnType("numeric(15,8)");
+                        .HasColumnType("numeric");
 
                     b.Property<string>("Units")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
