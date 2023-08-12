@@ -34,7 +34,15 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build the UnitsConversion app docker image
-        run: |
-          docker build . --tag ghcr.io/tobyononaku/units-conversion-gcr:latest
-          docker push ghcr.io/tobyononaku/units-conversion-gcr:latest
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Backend/Dockerfile
+          push: true
+          tags: ghcr.io/tobyononaku/units-conversion-gcr:latest
+  
+
+        # run: |
+        #   docker build . --tag ghcr.io/tobyononaku/units-conversion-gcr:latest
+        #   docker push ghcr.io/tobyononaku/units-conversion-gcr:latest
       
