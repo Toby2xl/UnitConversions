@@ -19,7 +19,7 @@ COPY ["/Backend/src/Units.Infrastructure/Units.Infrastructure.csproj", "src/Unit
 
 RUN dotnet restore "src/Units.Api/Units.Api.csproj"
 COPY . .
-WORKDIR "/src/src/Units.Api"
+WORKDIR "/src/Units.Api"
 RUN dotnet build "Units.Api.csproj" --configuration $configuration --output /app/build --no-restore
 
 FROM build AS publish
