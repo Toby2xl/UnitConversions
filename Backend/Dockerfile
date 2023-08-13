@@ -12,7 +12,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build
 ARG configuration=Release
 WORKDIR /src
 
-COPY ["/Backend/Units.sln", .]
+COPY ["/Backend/Units.sln", "src/"]
 COPY ["/Backend/Directory.Build.props", "src/"]
 COPY ["/Backend/src/Units.Core/Units.Core.csproj", "src/Units.Core/"]
 COPY ["/Backend/src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
