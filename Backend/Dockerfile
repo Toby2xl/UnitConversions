@@ -13,9 +13,9 @@ ARG configuration=Release
 WORKDIR /src
 COPY ["Directory.Build.props", "src/"]
 COPY ["src/Units.Core/Units.Core.csproj", "src/Units.Core/"]
+COPY ["src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
 COPY ["src/Units.Application/Units.Application.csproj", "src/Units.Application/"]
 COPY ["src/Units.Infrastructure/Units.Infrastructure.csproj", "src/Units.Infrastructure/"]
-COPY ["src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
 
 RUN dotnet restore "src/Units.Api/Units.Api.csproj"
 COPY . .
