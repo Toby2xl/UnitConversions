@@ -17,9 +17,14 @@ COPY ["/Backend/src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
 COPY ["/Backend/src/Units.Application/Units.Application.csproj", "src/Units.Application/"]
 COPY ["/Backend/src/Units.Infrastructure/Units.Infrastructure.csproj", "src/Units.Infrastructure/"]
 
+# COPY ["/Backend/Directory.Build.props", . ]
+# COPY Backend/src/*.csproj .
+# RUN dotnet restore --use-current-runtime 
+
 RUN dotnet restore "src/Units.Api/Units.Api.csproj"
-COPY . .
-WORKDIR "/src/Units.Api"
+
+COPY Backend/src/. .
+WORKDIR "/src/src/Units.Api"
 RUN dotnet build "Units.Api.csproj" --configuration $configuration --output /app/build --no-restore
 
 FROM build AS publish
