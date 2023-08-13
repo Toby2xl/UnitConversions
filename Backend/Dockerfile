@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0-bullseye-slim AS base
 WORKDIR /app
-EXPOSE 5072
+EXPOSE 5141
 
 ENV ASPNETCORE_URLS=http://+:5141
 ENV DOTNET_NOLOGO=true
@@ -12,10 +12,11 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build
 ARG configuration=Release
 WORKDIR /src
 COPY ["Directory.Build.props", "src/"]
-COPY ["src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
-COPY ["src/Units.Infrastructure/Units.Infrastructure.csproj", "src/Units.Infrastructure/"]
 COPY ["src/Units.Core/Units.Core.csproj", "src/Units.Core/"]
 COPY ["src/Units.Application/Units.Application.csproj", "src/Units.Application/"]
+COPY ["src/Units.Infrastructure/Units.Infrastructure.csproj", "src/Units.Infrastructure/"]
+COPY ["src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
+
 RUN dotnet restore "src/Units.Api/Units.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Units.Api"
