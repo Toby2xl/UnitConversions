@@ -39,7 +39,7 @@ jobs:
           context: ./Backend
           file: ./Backend/Dockerfile
           push: true
-          tags: ghcr.io/tobyononaku/units-conversion-gcr:latest
+          tags: ghcr.io/toby2xl/units-conversion-gcr:latest
   
 
 #         # run: |
