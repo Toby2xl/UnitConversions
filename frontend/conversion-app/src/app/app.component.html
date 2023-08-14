@@ -1,0 +1,28 @@
+<div class="body">
+  <select name="Convert" id="base" [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+    <option value="">--Select a Unit--</option>
+    <option *ngFor="let category of units" [value]="category.name">{{ category.name }}</option>
+  </select>
+
+  <div class="container">
+    <div class="item">
+      <h4>FROM</h4>
+      <select name="from" id="from" [(ngModel)]="selectedFromUnit" [disabled]="!selectedCategory"
+        (change)="onFromUnitChange()">
+        <option value="">--Select a Unit--</option>
+        <option *ngFor="let unit of selectedCategoryUnits" [value]="unit">{{ unit }}</option>
+      </select>
+    </div>
+    <div class="item">
+      <h4>TO</h4>
+      <select name="to" id="to" [(ngModel)]="selectedToUnit" [disabled]="!selectedFromUnit || !selectedCategory">
+        <option value="">--Select a Unit--</option>
+        <option *ngFor="let unit of selectedCategoryUnits" [value]="unit">{{ unit }}</option>
+      </select>
+    </div>
+  </div>
+
+  <input type="number" placeholder="Input Value" [(ngModel)]="inputValue" />
+  <button class="convert" (click)="convert()">Convert</button>
+  <p class="output" [(ngModel)]="outputResult">{{outputResult}}</p>
+</div>
