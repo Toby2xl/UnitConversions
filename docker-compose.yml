@@ -1,0 +1,53 @@
+version: '3.9'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+
+  # ASP.NET Core Web API Application
+  unitsconverter-webapi:
+    build:
+      context: ./Backend
+      dockerfile: Backend/Dockerfile
+    expose:
+      - 5141
+    ports:
+      - "5141:5141"
+    links:
+      - db
+      
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+      
+
+  #postgres
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "ConversionDB"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "UnitsDBPass"
+    networks:
+      - app-network
+  
+  #frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+        - unitsconverter-webapi
+    networks:
+      - app-network
