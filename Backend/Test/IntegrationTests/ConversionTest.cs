@@ -45,6 +45,29 @@ public class ConversionTest : IClassFixture<WebApplicationFactory<Program>>
 
         Assert.NotNull(response);
         Assert.True(response.Success == true);
+    }
+
+    [Fact]
+    public async Task CanConvertAndGetDestinationUnit()
+    {
+        var client = _factory.CreateClient();
+        var result = await client.GetAsync("/conversion/length/meter/foot?value=25");
+
+        Assert.NotNull(result);
+
+        var contents = await result.Content.ReadAsStringAsync();
+
+        Assert.NotEmpty(contents);
+
+        var response = JsonSerializer.Deserialize<ConversionResponse>(contents);
+        Assert.NotNull(response);
+
+        string destUnit = string.Empty;
+        if(response!.Success && response.Data is not null)
+        {
+            destUnit = response.Data.DestinationUnit;
+        }
+        Assert.Contains(destUnit,"foot");
 
     }
 }
