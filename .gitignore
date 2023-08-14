@@ -16,7 +16,7 @@
 # Mono auto generated files
 mono_crash.*
 
-
+.vscode/
 # frontend/
 # Build results
 [Dd]ebug/
