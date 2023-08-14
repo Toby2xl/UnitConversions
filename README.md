@@ -35,7 +35,7 @@ Before you begin, ensure you have the following installed:
     docker-compose up -d
     ``````
 
-1. Access your application in a web browser by navigating to <http://localhost:8080>
+1. Access the application in a web browser by navigating to <http://localhost:8080>
 1. To stop and remove the Docker containers:
 
      ```bash
