@@ -19,6 +19,19 @@ public class ConversionService : IConversionService
     {
         decimal sourceFactor;
         decimal destFactor;
+        decimal result;
+
+        if(dimension == "temperature")
+        {
+            result = Temperature.GetTemperature(sourceUnit, destinationUnit, sourceValue);
+            return result;
+        }
+
+        if(sourceUnit == destinationUnit)
+        {
+            result = sourceValue;
+            return result;
+        }
         var value = await _conversionRepo.GetConversionFactor(dimension, sourceUnit, destinationUnit, cancellationToken);
         if(value is null)
         {
@@ -32,13 +45,7 @@ public class ConversionService : IConversionService
         }
         
         var units = UnitConvert.Define(sourceValue, sourceFactor, destFactor);
-
-        if(dimension == "temperature")
-        {
-            return units.ConvertTemperature(sourceUnit, destinationUnit, sourceValue);
-        }
-
-        decimal result = units.Convert();
+        result = units.Convert();
         return result;
     }
 

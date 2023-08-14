@@ -24,8 +24,8 @@ public static class ConversionDbContextSeed
 
                 //Area
                 new Conversion { Units = "squarefoot", Dimension = "area", Factor = 1},
-                new Conversion { Units = "squaremeter", Dimension = "Area", Factor = 10.7639M },
-                new Conversion { Units = "squarekilometer", Dimension = "Area", Factor = 1.076e+7M },
+                new Conversion { Units = "squaremeter", Dimension = "area", Factor = 10.7639M },
+                new Conversion { Units = "squarekilometer", Dimension = "area", Factor = 1.076e+7M },
                 new Conversion { Units = "hectare", Dimension = "area", Factor = 107639 },
                 new Conversion { Units = "acres", Dimension = "area", Factor = 43560 },
                 new Conversion { Units = "squareinch", Dimension = "area", Factor = 0.00694444M },

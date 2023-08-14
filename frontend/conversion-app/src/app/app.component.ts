@@ -1,13 +1,3 @@
-// // import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.css']
-// })
-// export class AppComponent {
-//   title = 'conversion-app';
-// }
 
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -42,23 +32,23 @@ export class AppComponent  implements OnInit {
   units: UnitCategory[] = [
     {
       name: 'Length',
-      units: ['in', 'cm', 'm', 'mm'],
+      units: ['meter', 'kilometer', 'centimeter', 'milimeter', 'mile', 'yard', 'foot', 'inch'],
     },
     {
       name: 'Mass',
-      units: ['Kilogram', 'Miligram', 'Tonne', 'Gramme'],
+      units: ['ounce', 'gram', 'kilogram', 'miligram'],
     },
     {
       name: 'Temperature',
-      units: ['Celcius', 'Kelvin', 'Fahrenhiet'],
+      units: ['Celsius', 'Kelvin', 'Fahrenhiet'],
     },
     {
       name: 'Volume',
-      units: ['mm3', 'cm3'],
+      units: ['cubicfoot', 'cubicmeter', 'liter', 'cubiccentimeter'],
     },
     {
       name: 'Area',
-      units: ['mm2', 'cm2'],
+      units: ['squaremeter', 'squarekilometer', 'squarecentimeter', 'squaremilimeter', 'squaremile', 'squareyard', 'squarefoot', 'squareinch', 'hectare', 'acre'],
     },
   ];
 
@@ -72,17 +62,19 @@ export class AppComponent  implements OnInit {
   onCategoryChange() {
     this.selectedFromUnit = '';
     this.selectedToUnit = '';
+    this.convertedResult = 0;
+    this.inputValue = 0;
   }
   onFromUnitChange() {
     this.selectedToUnit = ''; // Reset the "TO" select value when "FROM" select changes
   }
 
   convertUnits() {
-    this.http.get<any>(`http://localhost:5141/api/conversion/${this.selectedCategory}/${this.selectedFromUnit}/${this.selectedToUnit}/?value=${this.inputValue}`
+    this.http.get<any>(`http://localhost:5141/conversion/${this.selectedCategory.toLowerCase()}/${this.selectedFromUnit.toLowerCase()}/${this.selectedToUnit.toLowerCase()}/?value=${this.inputValue}`
     ).subscribe(
       {
         next: data => {
-          this.convertedResult = data;
+          this.convertedResult = data.success ? (data.data.destinationValue ?? -1) : 0;
         }
       }
     );
@@ -98,7 +90,6 @@ export class AppComponent  implements OnInit {
       this.outputResult =  "Check Your inputs again!"
     }else{
       this.convertUnits();
-      this.outputResult =  `${this.inputValue}${this.selectedFromUnit} to ${this.selectedToUnit} is ${this.convertedResult}${this.selectedToUnit}`
     }
   }
 }

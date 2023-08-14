@@ -11,18 +11,7 @@ ENV DOTNET_EnableDiagnostics=0
 FROM mcr.microsoft.com/dotnet/sdk:7.0-bullseye-slim AS build
 ARG configuration=Release
 WORKDIR /src
-
-COPY ["Directory.Build.props", "src/"]
-COPY Backend/src/**/*.csproj .
-RUN dotnet restore --use-current-runtime
-# COPY . .
-
-# COPY ["Directory.Build.props", "src/"]
-# COPY ["./Units.sln", "./"]
-# COPY ["./src/Units.Core/Units.Core.csproj", "src/Units.Core/"]
-# COPY ["./src/Units.Api/Units.Api.csproj", "src/Units.Api/"]
-# COPY ["./src/Units.Application/Units.Application.csproj", "src/Units.Application/"]
-# COPY ["./src/Units.Infrastructure/Units.Infrastructure.csproj", "src/Units.Infrastructure/"]
+COPY . .
 
 RUN dotnet restore "./Units.sln" 
 COPY . .

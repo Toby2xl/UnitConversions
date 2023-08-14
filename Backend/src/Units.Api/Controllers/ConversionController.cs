@@ -15,20 +15,20 @@ public class ConversionController : ControllerBase
         _mediator = mediator;
     }
 
-    public IResult Get()
-    {
-        return Results.Ok("Unit Conversion API");
-    }
+    // public IResult Get()
+    // {
+    //     return Results.Ok("Unit Conversion API");
+    // }
 
     [HttpGet("{dimension}/{sourceUnit}/{destUnit}", Name = "GetConversion")]
-    public async Task<IResult> Convert([FromRoute] string dimension, [FromRoute]string sourceUnit, [FromRoute]string destUnit, [FromQuery] decimal sourceValue)
+    public async Task<IResult> Convert([FromRoute] string dimension, [FromRoute]string sourceUnit, [FromRoute]string destUnit, [FromQuery] decimal value)
     {
         var conversionQuery = new GetConversionQuery
         {
             Dimension = dimension,
             SourceUnit = sourceUnit,
             DestinationUnit = destUnit,
-            SourceValue = sourceValue
+            SourceValue = value
         };
 
         var response = await _mediator.Send(conversionQuery);

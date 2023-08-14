@@ -33,8 +33,4 @@ public class UnitConvert
         return result;
     }
 
-    public decimal ConvertTemperature(string sourceUnit, string destUnit, decimal sourceValue)
-    {
-        return Temperature.GetTemperature(sourceUnit, destUnit, sourceValue);
-    }
 }
