@@ -17,29 +17,29 @@
 # #     - name: Setup .NET
 # on: [push]
 
-# jobs:
-#   build:
+jobs:
+  build:
 
-#     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-#       - name: Login to Github Container registry
-#         uses: docker/login-action@v2
+      - name: Login to Github Container registry
+        uses: docker/login-action@v2
 
-#         with:
-#           registry: ghcr.io
-#           username: ${{ github.actor }}
-#           password: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-#       - name: Build the UnitsConversion app docker image
-#         uses: docker/build-push-action@v2
-#         with:
-#           context: .
-#           file: ./Backend/Dockerfile
-#           push: true
-#           tags: ghcr.io/tobyononaku/units-conversion-gcr:latest
+      - name: Build the UnitsConversion app docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Backend/Dockerfile
+          push: true
+          tags: ghcr.io/tobyononaku/units-conversion-gcr:latest
   
 
 #         # run: |
