@@ -19,7 +19,6 @@ Before you begin, ensure you have the following installed:
 
    ```bash
    git clone https://github.com/Toby2xl/UnitConversions.git
-   cd UnitConversions/
    ```
 
 ## Running the Application
