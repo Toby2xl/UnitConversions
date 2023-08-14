@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
+# Install Angular CLI to run Build #
+RUN npm install -g @angular/cli
+
 # Install the app's dependencies
 RUN npm install
 
@@ -15,6 +18,8 @@ COPY . .
 
 # Build the Angular app
 RUN npm run build --omit=dev
+
+RUN ng build
 
 # Use a lightweight web server to serve the Angular app
 FROM nginx:alpine
@@ -26,4 +31,4 @@ COPY --from=build /usr/src/app/dist/conversion-app /usr/share/nginx/html
 EXPOSE 80
 
 # Start Nginx when the container starts
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
